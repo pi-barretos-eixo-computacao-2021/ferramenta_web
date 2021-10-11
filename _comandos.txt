@@ -1,0 +1,31 @@
+Criação de ambiente virtual:
+python -m venv env
+
+Ativar o ambiente virtual:	
+env\Scripts\activate.bat
+
+Instalar bibliotecadas:
+pip install flask
+pip install sqlalchemy
+pip install flask-sqlalchemy
+
+pip install Flask-Session
+pip install Flask-SQLAlchemy
+
+Criar pasta:
+md rh
+
+executar servidor de desenvolvimento
+flask run
+http://127.0.0.1:5000
+
+Criar pasta templates
+Dentro de templates, criar arquivo index.html
+
+Criar pasta static
+Dentro de static, criar pasta css
+Dentro de css, criar arquivo estilo.css
+
+Executar o Script para criar banco de dados SQLite
+python init.db.py
+
