@@ -34,3 +34,9 @@ Dentro de css, criar arquivo estilo.css
 Executar o Script para criar banco de dados SQLite
 python init.db.py
 
+
+
+
+
+github: https://github.com/pi-barretos-eixo-computacao-2021
+

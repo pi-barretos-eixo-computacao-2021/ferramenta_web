@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div style="text-align:center"><h2>{% block title %} Bem-vindo(a) ao Controle de Férias! {% endblock title %}</h2></div>
+    <div style="text-align:center"><h2>{% block title %} Bem-vindo(a) ao Controle de Férias! {% endblock title %}</h2><br></div>
+    {% for nome in cf %}
+        <a href='#'>
+            <h5>{{ nome['pessoa'] }}, Empresa: {{ nome['empresaid'] }}, Inicio: {{ nome['data_inicio_ferias']}},
+            Fim: {{ nome['data_fim_ferias']}}, Valor a Pagar: {{ nome['valor_ferias']}}</h5>
+        </a>
+        <span class="badge badge-primary">{{ nome['created'] }}</span>
+        <hr>
+    {% endfor %}
 {% endblock %} 
