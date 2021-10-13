@@ -11,9 +11,9 @@ app.config['SECRET_KEY'] = 'Senha*659'
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 db = SQLAlchemy(app)
 
-class controle_ferias(db.Model):
+''' class controle_ferias(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    ''' inclusao = db.Column(db.Datetime, default=datetime.datetime.utcnow)
+    inclusao = db.Column(db.Datetime, default=datetime.datetime.utcnow)
     empresaid = db.Column(db.Integer(3), nulltable=False)
     pessoa = db.Column(db.String(60), nulltable=False)
     data_inicio_ferias = db.Column(db.Date, nulltable=False)

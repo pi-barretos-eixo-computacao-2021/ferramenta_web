@@ -1,3 +1,5 @@
+Ambiente Windows
+
 Criação de ambiente virtual:
 python -m venv env
 
@@ -14,6 +16,9 @@ pip install Flask-SQLAlchemy
 
 Criar pasta:
 md rh
+
+Ativar ambiente de desenvolvimento
+set FLASK_ENV=development
 
 executar servidor de desenvolvimento
 flask run
