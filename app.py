@@ -1,6 +1,7 @@
 from flask import Flask, render_template
-import os, datetime
+import os, datetime, time
 import sqlite3
+import locale
 from flask_sqlalchemy import SQLAlchemy
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -10,6 +11,9 @@ app = Flask('__name__')
 app.config['SECRET_KEY'] = 'Senha*659'
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 db = SQLAlchemy(app)
+
+def format_currency(value):
+    return "R${:,.2f}".format(value)
 
 class Controle_ferias(db.Model):
     id = db.Column(db.Integer, primary_key=True)
