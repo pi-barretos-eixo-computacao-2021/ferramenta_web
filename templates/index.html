@@ -2,15 +2,13 @@
 
 {% block content %}
     <div style="text-align:center"><h2>{% block title %} Bem-vindo(a) ao Controle de Férias! {% endblock title %}</h2><br></div>
-    {% for nome in cf %}
-        <a href='#'>
-            <h5>{{ nome.pessoa }},
-            Empresa: {{ nome['empresaid'] }},
-            Valor a Pagar: R$ {{ nome.valor_ferias }}</h5>
+    {% for nome in cf %}        
+        <a href="#">
+            <h5>{{ nome.pessoa }}
+            </h5>
         </a>
         <span class="badge badge-primary"> 
-        Inicio: {{ nome.data_inicio_ferias.strftime('%d-%m-%Y') }},
-        Fim: {{ nome.data_fim_ferias.strftime('%d-%m-%Y') }} 
+        Empresa: {{ nome['empresaid'] }}        
         </span>
         <hr>
     {% endfor %}

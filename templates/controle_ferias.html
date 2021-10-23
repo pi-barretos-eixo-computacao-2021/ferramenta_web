@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %} <br/><br/>
+    <h2> {% block title %} {{ cf['pessoa'] }} {% endblock  %} </h2>
+    <span class="badge badge-primary">Empresa: {{ cf['empresaid'] }}</span><h2>
+    <h3>Início das férias: {{ cf.data_inicio_ferias.strftime('%d-%m-%Y') }}<br/>
+    Fim das férias: {{ cf.data_fim_ferias.strftime('%d-%m-%Y') }}<br/>
+    Valor a Pagar: R$ {{ cf['valor_ferias'] }}</h3>
+{% endblock  %}
