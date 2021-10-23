@@ -3,6 +3,7 @@ import os, datetime, time
 import sqlite3
 import locale
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.exceptions import abort
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "database.db"))
@@ -28,3 +29,5 @@ class Controle_ferias(db.Model):
 def index():
     cf = Controle_ferias.query.all()
     return render_template('index.html', cf=cf)
+
+  
