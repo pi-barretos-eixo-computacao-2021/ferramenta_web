@@ -30,13 +30,14 @@ def index():
     cf = Controle_ferias.query.all()
     return render_template('index.html', cf=cf)
 
-def get_post(cf_id):
-    cf = Controle_ferias.query.filter_by(id=cf_id).first()
-    if cf is None:
+def get_post(cf2_id):
+    cf2 = Controle_ferias.query.filter_by(id=cf2_id).first()
+    if cf2 is None:
         abort(404)
-    return cf
+    return cf2
 
-@app.route('/<int:cf_id>')
-def cf(cf_id):
-    cf = get_post(cf_id)
-    return render_template('controle_ferias.html', cf=cf)
+@app.route('/<int:cf2_id>')
+def cf2(cf2_id):
+    cf2 = get_post(cf2_id)
+    return render_template('controle_ferias.html', cf2=cf2)
+    

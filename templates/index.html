@@ -2,13 +2,13 @@
 
 {% block content %}
     <div style="text-align:center"><h2>{% block title %} Bem-vindo(a) ao Controle de Férias! {% endblock title %}</h2><br></div>
-    {% for nome in cf %}        
-        <a href="#">
-            <h5>{{ nome.pessoa }}
+    {% for cf2 in cf %}        
+        <a href="{{ url_for('cf2', cf2_id=cf2['id']) }}">
+            <h5>{{ cf2.pessoa }}
             </h5>
         </a>
         <span class="badge badge-primary"> 
-        Empresa: {{ nome['empresaid'] }}        
+        Empresa: {{ cf2['empresaid'] }}        
         </span>
         <hr>
     {% endfor %}
