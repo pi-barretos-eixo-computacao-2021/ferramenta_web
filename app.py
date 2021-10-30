@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, flash, redirect
 import os, datetime, time
 import sqlite3
 import locale
@@ -40,4 +40,54 @@ def get_post(cf2_id):
 def cf2(cf2_id):
     cf2 = get_post(cf2_id)
     return render_template('controle_ferias.html', cf2=cf2)
-    
+
+@app.route('/novo', methods=('GET', 'POST'))
+def novo():
+    if request.method == 'POST':        
+        empresaid = request.form['empresaid']
+        pessoa = request.form['pessoa']
+        data_inicio_ferias = request.form['data_inicio_ferias']
+        data_fim_ferias = request.form['pesdata_fim_feriassoa']                
+        valor_ferias = request.form['valor_ferias']        
+
+        if not pessoa:
+            flash('Campo obrigatório')
+        else:
+            novo = Controle_ferias(empresaid=empresaid, pessoa=pessoa, data_inicio_ferias=data_inicio_ferias, data_fim_ferias=data_fim_ferias, valor_ferias=valor_ferias)
+            db.session.add(novo)
+            db.session.commit()
+            return redirect(url_for('index'))
+
+    return render_template('novo.html')
+
+@app.route('/<int:cf2_id>/editar', methods=('GET', 'POST'))
+def editar(cf2_id):
+    cf2 = get_post(cf2_id)
+
+    if request.method == 'POST':
+        empresaid = request.form['empresaid']
+        pessoa = request.form['pessoa']
+        data_inicio_ferias = request.form['data_inicio_ferias']
+        data_fim_ferias = request.form['data_fim_ferias']                
+        valor_ferias = request.form['valor_ferias']
+
+        if not pessoa:
+            flash('Campo obrigatório')
+        else:
+            cf2.empresaid = empresaid
+            cf2.pessoa = pessoa
+            cf2.data_inicio_ferias = data_inicio_ferias            
+            cf2.pesdata_fim_ferias = data_fim_ferias
+            cf2.valor_ferias = valor_ferias
+            db.session.commit()
+            return redirect(url_for('index'))
+
+    return render_template('editar.html', cf2=cf2)
+
+@app.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    cf2 = get_post(id)
+    db.session.delete(cf2)
+    db.session.commit()
+    flash('"{}" foi apagado com sucesso!'.format(cf2.pessoa))
+    return redirect(url_for('index'))

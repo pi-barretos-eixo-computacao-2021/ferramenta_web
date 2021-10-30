@@ -5,5 +5,5 @@
     <span class="badge badge-primary">Empresa: {{ cf2['empresaid'] }}</span><h2>
     <h3>Início das férias: {{ cf2.data_inicio_ferias.strftime('%d-%m-%Y') }}<br/>
     Fim das férias: {{ cf2.data_fim_ferias.strftime('%d-%m-%Y') }}<br/>
-    Valor a Pagar: R$ {{ cf2['valor_ferias'] }}</h3>
+    Valor a Pagar/Pago: R$ {{ cf2['valor_ferias'] }}</h3>
 {% endblock  %}
