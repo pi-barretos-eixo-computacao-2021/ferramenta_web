@@ -19,21 +19,11 @@ def format_currency(value):
     return "R${:,.2f}".format(value)
 
 class Controle_ferias(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    # inclusao = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    id = db.Column(db.Integer, primary_key=True)    
     empresaid = db.Column(db.Integer, nullable=False)
     pessoa = db.Column(db.String(60), nullable=False)    
     data_inicio_ferias = db.Column(db.Date)
     data_fim_ferias = db.Column(db.Date)
-
-    # data_inicio_ferias = db.Column(db.Date)
-    # data_fim_ferias = db.Column(db.Date)
-        
-    # data_inicio_ferias = db.Column(strftime("%m/%d/%Y"))
-    # data_fim_ferias = db.Column(strftime("%m/%d/%Y"))
-
-    # data_inicio_ferias = db.DateTime(db.DateTime)
-    # data_fim_ferias = db.DateTime(db.DateTime)
     valor_ferias = db.Column(db.Float, nullable=False)
 
 @app.route('/')
@@ -57,27 +47,10 @@ def novo():
     if request.method == 'POST':
         empresaid = request.form.get('empresaid')
         pessoa = request.form.get('pessoa')
-
-        data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d').date()
-        data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d').date()
-
-
-        # data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d %H:%M:%S').date()
-        # data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d %H:%M:%S').date()
-
-        # data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d %H:%M:%S').date()
-        # data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d %H:%M:%S').date()
-
-        # data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d').date()
-        # data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d').date()
-
-        #data_inicio_ferias = request.form['data_inicio_ferias']
-        #data_fim_ferias = request.form['data_fim_ferias']
-        
-        # data_inicio_ferias=request.form.get('data_inicio_ferias')
-        # data_fim_ferias=request.form.get('data_fim_ferias')
-        # data_inicio_ferias=request.form.get('db.DateTime')
-        # data_fim_ferias=request.form.get('db.DateTime')        
+        data_inicio_ferias = request.form.get('data_inicio_ferias')
+        data_fim_ferias = request.form.get('data_fim_ferias')        
+        data_inicio_ferias = datetime.strptime(data_inicio_ferias, '%Y-%m-%d').date()
+        data_fim_ferias = datetime.strptime(data_fim_ferias, '%Y-%m-%d').date()        
         valor_ferias=request.form.get('valor_ferias').replace(',', '.')
 
         if not pessoa:
@@ -96,8 +69,7 @@ def editar(cf2_id):
 
     if request.method == 'POST':
         empresaid = request.form['empresaid']
-        pessoa = request.form['pessoa']
-        # data_inicio_ferias = request.form['data_inicio_ferias']
+        pessoa = request.form['pessoa']        
         data_inicio_ferias = request.form['data_inicio_ferias']
         data_fim_ferias = request.form['data_fim_ferias']                
         valor_ferias = request.form['valor_ferias'].replace(',', '.')
@@ -106,8 +78,7 @@ def editar(cf2_id):
             flash('Campo obrigatório')
         else:
             cf2.empresaid = empresaid
-            cf2.pessoa = pessoa
-            # cf2.data_inicio_ferias = data_inicio_ferias
+            cf2.pessoa = pessoa            
             data_inicio_ferias=request.form.get('db.Date')
             data_fim_ferias=request.form.get('db.Date')
             cf2.valor_ferias = valor_ferias
