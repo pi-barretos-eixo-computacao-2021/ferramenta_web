@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <br><div><h2 >{% block title %}<center> Bem-vindo(a) ao Controle de Férias! </center>{% endblock title %}</h2></div>
+    <br><div style="text-align:center"><h2 >{% block title %} Bem-vindo(a) ao Controle de Férias! {% endblock title %}</h2></div>
     {% for cf2 in cf %}
         <a href="{{ url_for('cf2', cf2_id=cf2['id']) }}">
             <h5 style="text-transform:uppercase">{{ cf2.pessoa }}
