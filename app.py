@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
-import os, datetime, time
+import os
 import sqlite3
 import locale
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.exceptions import abort
-from datetime import date
-# from datetime import date, datetime
+from datetime import date, datetime
+from time import strptime
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "database.db"))
@@ -20,11 +20,15 @@ def format_currency(value):
 
 class Controle_ferias(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    inclusao = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    # inclusao = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     empresaid = db.Column(db.Integer, nullable=False)
-    pessoa = db.Column(db.String(60), nullable=False)
+    pessoa = db.Column(db.String(60), nullable=False)    
     data_inicio_ferias = db.Column(db.Date)
     data_fim_ferias = db.Column(db.Date)
+
+    # data_inicio_ferias = db.Column(db.Date)
+    # data_fim_ferias = db.Column(db.Date)
+        
     # data_inicio_ferias = db.Column(strftime("%m/%d/%Y"))
     # data_fim_ferias = db.Column(strftime("%m/%d/%Y"))
 
@@ -53,9 +57,27 @@ def novo():
     if request.method == 'POST':
         empresaid = request.form.get('empresaid')
         pessoa = request.form.get('pessoa')
-        #data_inicio_ferias=request.form.get('data_inicio_ferias')
-        data_inicio_ferias=request.form.get('db.DateTime')
-        data_fim_ferias=request.form.get('db.DateTime')
+
+        data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d').date()
+        data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d').date()
+
+
+        # data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d %H:%M:%S').date()
+        # data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d %H:%M:%S').date()
+
+        # data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d %H:%M:%S').date()
+        # data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d %H:%M:%S').date()
+
+        # data_inicio_ferias = datetime.strptime('data_inicio_ferias', '%Y-%m-%d').date()
+        # data_fim_ferias = datetime.strptime('data_fim_ferias', '%Y-%m-%d').date()
+
+        #data_inicio_ferias = request.form['data_inicio_ferias']
+        #data_fim_ferias = request.form['data_fim_ferias']
+        
+        # data_inicio_ferias=request.form.get('data_inicio_ferias')
+        # data_fim_ferias=request.form.get('data_fim_ferias')
+        # data_inicio_ferias=request.form.get('db.DateTime')
+        # data_fim_ferias=request.form.get('db.DateTime')        
         valor_ferias=request.form.get('valor_ferias').replace(',', '.')
 
         if not pessoa:
@@ -86,8 +108,8 @@ def editar(cf2_id):
             cf2.empresaid = empresaid
             cf2.pessoa = pessoa
             # cf2.data_inicio_ferias = data_inicio_ferias
-            data_inicio_ferias=request.form.get('db.DateTime')
-            data_fim_ferias=request.form.get('db.DateTime')
+            data_inicio_ferias=request.form.get('db.Date')
+            data_fim_ferias=request.form.get('db.Date')
             cf2.valor_ferias = valor_ferias
             db.session.commit()
             return redirect(url_for('index'))
