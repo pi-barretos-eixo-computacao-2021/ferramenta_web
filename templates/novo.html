@@ -1,32 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{% block title %} Novo lançamento de férias {% endblock %}</h1>
+<br><h3>{% block title %}<center> NOVO LANÇAMENTO DE FÉRIAS </center>{% endblock %}</h3>
 
 <form method="post">
     <div class="form-group">
         <label for="empresaid">Empresa</label>
-        <input type="text" name="empresaid" placeholder="Cód. Empresa" class="form-control" value="{{ request.form['empresaid'] }}"></input>
+        <input type="Number" required autocomplete="off" autofocus name="empresaid" placeholder="Cód. Empresa" class="form-control" value="{{ request.form['empresaid'] }}"></input>
     </div>
 
     <div class="form-group">
-        <label for="pessoa">Nome Colaborador (a)</label>
-        <input type="text" name="pessoa" placeholder="" class="form-control" value="{{ request.form['pessoa'] }}"></input>
+        <label for="pessoa">Nome Colaborador (a)</label>        
+        <input type="text" required style="text-transform:uppercase" autocomplete="off" name="pessoa" placeholder="" class="form-control" value="{{ request.form['pessoa'] }}"></input>
     </div>
 
     <div class="form-group">
         <label for="data_inicio_ferias">Início das férias</label>
-        <input type="text" name="data_inicio_ferias" placeholder="XX/XX/XXXX" class="form-control" value="{{ request.form['data_inicio_ferias'] }}"></input>
+        <input type="Date" required autocomplete="off" name="data_inicio_ferias" placeholder="" class="form-control" value="{{ request.form['data_inicio_ferias'] }}"></input>
     </div>    
 
     <div class="form-group">
         <label for="data_fim_ferias">Fim das férias</label>
-        <input type="text" name="data_fim_ferias" placeholder="XX/XX/XXXX" class="form-control" value="{{ request.form['data_fim_ferias'] }}"></input>
+        <input type="Date" required autocomplete="off" name="data_fim_ferias" placeholder="" class="form-control" value="{{ request.form['data_fim_ferias'] }}"></input>
+        <!-- <input type="datetime-local" required... -->
     </div>        
 
     <div class="form-group">
         <label for="valor_ferias">Valor das férias</label>
-        <input type="text" name="valor_ferias" placeholder="" class="form-control" value="{{ request.form['valor_ferias'] }}"></input>
+        <input type="text" required autocomplete="off" name="valor_ferias" placeholder="" class="form-control" value="{{ request.form['valor_ferias'] }}"></input>
     </div>        
 
     <div class="form-group">
@@ -34,4 +35,3 @@
     </div>
 </form>
 {% endblock %}
-

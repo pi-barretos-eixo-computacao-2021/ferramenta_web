@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %} <br/><br/>
-    <h2> {% block title %} {{ cf2['pessoa'] }} {% endblock  %} </h2>
-    <span class="badge badge-primary">Empresa: {{ cf2['empresaid'] }}</span><h2>
-    <h3>Início das férias: {{ cf2.data_inicio_ferias.strftime('%d-%m-%Y') }}<br/>
-    Fim das férias: {{ cf2.data_fim_ferias.strftime('%d-%m-%Y') }}<br/>
+    <h2 style="text-transform:uppercase"> {% block title %} {{ cf2['pessoa'] }} {% endblock  %} </h2>    
+    <h3>Empresa: {{ cf2['empresaid'] }}<br/>
+    Início das Férias: {{ cf2.data_inicio_ferias.strftime('%d/%m/%Y') }}<br/>
+    Fim das Férias: {{ cf2.data_fim_ferias.strftime('%d/%m/%Y') }}<br/>
     Valor a Pagar/Pago: R$ {{ cf2['valor_ferias'] }}</h3>
+    <a href="{{ url_for('index')}}"><span class="badge badge-warning">Voltar</span></a>
 {% endblock  %}

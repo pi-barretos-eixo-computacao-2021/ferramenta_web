@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{% block title %} Editar "{{ cf2['pessoa'] }}" {% endblock %}</h1>
+<br><h3 style="text-transform:uppercase">{% block title %} Edição: " {{ cf2['pessoa'] }}" {% endblock %}</h3>
 
 <form method="POST">
     <div class="form-group">
         <label for="pessoa">Nome Colaborador (a)</label>
-        <input type="text" name="pessoa" size="20" placeholder=""
+        <input type="text" required autocomplete="off" name="pessoa" size="20" placeholder=""
                class="form-control"
                value="{{ request.form['pessoa'] or cf2['pessoa'] }}">
         </input>
@@ -14,25 +14,25 @@
 
     <div class="form-group">
         <label for="empresaid">Código Empresa</label>
-        <textarea name="empresaid" placeholder=""
+        <textarea required autocomplete="off" name="empresaid" placeholder=""
                   class="form-control">{{ request.form['empresaid'] or cf2['empresaid'] }}</textarea>
     </div>
 
     <div class="form-group">
         <label for="data_inicio_ferias">Início das férias</label>
-        <textarea name="data_inicio_ferias" placeholder=""
+        <textarea autocomplete="off" name="data_inicio_ferias" placeholder=""
                   class="form-control">{{ request.form['data_inicio_ferias'] or cf2['data_inicio_ferias'] }}</textarea>
     </div>
 
     <div class="form-group">
         <label for="data_fim_ferias">Fim das férias</label>
-        <textarea name="data_fim_ferias" placeholder=""
+        <textarea autocomplete="off" name="data_fim_ferias" placeholder=""
                   class="form-control">{{ request.form['data_fim_ferias'] or cf2['data_fim_ferias'] }}</textarea>
     </div>
 
     <div class="form-group">
         <label for="valor_ferias">Valor das férias</label>
-        <textarea name="valor_ferias" placeholder=""
+        <textarea required autocomplete="off" name="valor_ferias" placeholder=""
                   class="form-control">{{ request.form['valor_ferias'] or cf2['valor_ferias'] }}</textarea>
     </div>            
     
@@ -40,7 +40,6 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </div>
 </form>
-<hr>
 
 <form action="{{ url_for('delete', id=cf2['id']) }}" method="POST">
     <input type="submit" value="Apagar"
